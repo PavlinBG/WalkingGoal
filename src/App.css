@@ -1,5 +1,7 @@
 .App {
   text-align: center;
+  background-color: #676f67;
+  color: white;
 }
 
 .App-logo {
@@ -52,4 +54,24 @@ h1 {
 
 .result {
   margin-top: 20px;
+}
+
+table {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+th,
+td {
+  border: 1px solid black;
+  padding: 8px;
+  text-align: center;
+}
+
+th {
+  background-color: #053a07;
+}
+
+tr{
+  background-color: #093b05;
 }

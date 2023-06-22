@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
+import WalkReport from './WalkReport';
 
-function App() {
+function CalTest() {
   const [measurementSystem, setMeasurementSystem] = useState('metric');
   const [biologicalSex, setBiologicalSex] = useState('');
   const [height, setHeight] = useState(0);
@@ -11,6 +12,8 @@ function App() {
   const [goalDuration, setGoalDuration] = useState(0);
   const [walkingDuration, setWalkingDuration] = useState(0);
   const [stepsToWalk, setStepsToWalk] = useState(0);
+  const [walkingGoals, setWalkingGoals] = useState([]);
+  const [report, setReport] = useState('');
 
   const handleMeasurementSystemChange = (e) => {
     setMeasurementSystem(e.target.value);
@@ -41,41 +44,55 @@ function App() {
   };
 
   const handleGoalDurationChange = (e) => {
-    setGoalDuration(e.target.value);
+    const duration = parseInt(e.target.value);
+    setGoalDuration(duration);
   };
 
-  const calculateWalkingDurationAndSteps = () => {
-    const weightInKg = measurementSystem === 'imperial' ? (feet * 12 + inches) * 0.0254 : weight;
-    const goalWeightInKg = measurementSystem === 'imperial' ? goalWeight * 0.453592 : goalWeight;
-    const caloriesPerMinute = 4.9; // Calories burned per minute at a moderate walking pace
-    const caloriesPerKg = 7500; // Calories burned per kg of body fat
-
+  const generateWalkingGoal = () => {
+    const weightInKg = measurementSystem === 'imperial' ? weight * 0.453592 : weight;
+    const goalWeightInKg = measurementSystem === 'imperial' ? goalWeight * 0.453592 : goalWeight;    const caloriesPerMinute = 4.9;
+    const caloriesPerKg = 7500;
+  
     const totalCaloriesToBurn = (weightInKg - goalWeightInKg) * caloriesPerKg;
     const walkingDurationInMinutes = totalCaloriesToBurn / caloriesPerMinute;
-    const averageStepsPerMinute = 120; // Average number of steps per minute while walking
+    const averageStepsPerMinute = 120;
     const totalStepsToWalk = walkingDurationInMinutes * averageStepsPerMinute;
-
+    
+  
     setWalkingDuration(walkingDurationInMinutes.toFixed(2));
     setStepsToWalk(totalStepsToWalk.toFixed(0));
+  
+    const goalDurationInDays = goalDuration * 30; // Assuming 1 month = 30 days
+    const stepsPerDay = Math.round(totalStepsToWalk / goalDurationInDays);
+  
+    const walkingGoals = Array.from({ length: goalDurationInDays }, (_, index) => ({
+      day: `Day ${index + 1}`,
+      steps: stepsPerDay,
+    }));
+  
+    setWalkingGoals(walkingGoals);
+  
+    generateReport();
   };
+  
 
   const generateReport = () => {
-    const report = `Walking Weight Loss Report
-    ------------------------------
-    Measurement System: ${measurementSystem}
-    Biological Sex: ${biologicalSex}
-    Height: ${measurementSystem === 'metric' ? height + ' cm' : feet + ' ft ' + inches + ' in'}
-    Weight: ${weight} ${measurementSystem === 'metric' ? 'kg' : 'lbs'}
-    Goal Weight: ${goalWeight} ${measurementSystem === 'metric' ? 'kg' : 'lbs'}
-    Goal Duration: ${goalDuration} months
-    Walking Duration: ${walkingDuration} minutes
-    Steps to Walk: ${stepsToWalk} steps`;
+    const reportText = `Walking Weight Loss Report
+      ------------------------------
+      Measurement System: ${measurementSystem}
+      Biological Sex: ${biologicalSex}
+      Height: ${measurementSystem === 'metric' ? height + ' cm' : feet + ' ft ' + inches + ' in'}
+      Weight: ${weight} ${measurementSystem === 'metric' ? 'kg' : 'lbs'}
+      Goal Weight: ${goalWeight} ${measurementSystem === 'metric' ? 'kg' : 'lbs'}
+      Goal Duration: ${goalDuration} months
+      Walking Duration: ${walkingDuration} minutes
+      Steps to Walk: ${stepsToWalk} steps`;
 
-    console.log(report); // Modify this line to display the report in a desired way (e.g., render it in a separate component)
+    setReport(reportText);
   };
 
   return (
-    <div>
+    <div className="container">
       <div className="input-group">
         <label>Measurement System:</label>
         <select value={measurementSystem} onChange={handleMeasurementSystemChange}>
@@ -115,10 +132,10 @@ function App() {
         <input type="number" value={goalDuration} onChange={handleGoalDurationChange} />
       </div>
       <div className="input-group">
-        <button onClick={calculateWalkingDurationAndSteps}>Calculate Walking Duration and Steps</button>
-        <button onClick={generateReport}>Generate Report</button>
+        <button onClick={generateWalkingGoal} className="generate-btn">Generate Walking Goal</button>
       </div>
       <div className="result">
+        {report && <WalkReport report={report} walkingGoals={walkingGoals} />}
         <p>Walking Duration: {walkingDuration} minutes</p>
         <p>Steps to Walk: {stepsToWalk} steps</p>
       </div>
@@ -126,4 +143,4 @@ function App() {
   );
 }
 
-export default App;
+export default CalTest;
