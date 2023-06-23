@@ -2,39 +2,44 @@ import React, { useRef } from 'react';
 
 function PrintableTable({ walkingGoals }) {
   return (
-    <table>
-      <thead>
-        <tr>
-          <th>Monday</th>
-          <th>Tuesday</th>
-          <th>Wednesday</th>
-          <th>Thursday</th>
-          <th>Friday</th>
-          <th>Saturday</th>
-          <th>Sunday</th>
-        </tr>
-      </thead>
-      <tbody>
-        {walkingGoals.map((goal, index) => {
-          if (index % 7 === 0) {
-            return (
-                 
-              <tr key={index}>
-                {walkingGoals.slice(index, index + 7).map((weeklyGoal, i) => (
-                   <td key={i}>
-                    Day {index + i + 1}:<fieldset>  <p>Walking Goal: {weeklyGoal.steps} Steps</p> <p> <input type="checkbox" id="Done" name="Done"></input> </p></fieldset>
-                  </td>
-                   
-                ))}
-              </tr>
-               
-            );
-          } else {
-            return null; // Skip rendering for other days within the week
-          }
-        })}
-      </tbody>
-    </table>
+    <div className="overflow-x-auto">
+      <table className="w-full">
+        <thead>
+          <tr>
+            <th className="px-4 py-2">Monday</th>
+            <th className="px-4 py-2">Tuesday</th>
+            <th className="px-4 py-2">Wednesday</th>
+            <th className="px-4 py-2">Thursday</th>
+            <th className="px-4 py-2">Friday</th>
+            <th className="px-4 py-2">Saturday</th>
+            <th className="px-4 py-2">Sunday</th>
+          </tr>
+        </thead>
+        <tbody>
+          {walkingGoals.map((goal, index) => {
+            if (index % 7 === 0) {
+              return (
+                <tr key={index}>
+                  {walkingGoals.slice(index, index + 7).map((weeklyGoal, i) => (
+                    <td key={i} className="border px-50 py-2">
+                      <div>Day {index + i + 1}:</div>
+                      <fieldset>
+                        <p>Walking Goal: {weeklyGoal.steps} Steps</p>
+                        <p>
+                          <input type="checkbox" id="Done" name="Done" />
+                        </p>
+                      </fieldset>
+                    </td>
+                  ))}
+                </tr>
+              );
+            } else {
+              return null; // Skip rendering for other days within the week
+            }
+          })}
+        </tbody>
+      </table>
+    </div>
   );
 }
 
@@ -54,14 +59,16 @@ function WalkReport({ report, walkingGoals }) {
 
   return (
     <div className="report">
-      <h2>Walking Weight Loss Report</h2>
-      <pre>{report}</pre>
+      <h2 className="text-2xl font-bold mb-4">Walking Weight Loss Report</h2>
+      <pre className="whitespace-pre-wrap">{report}</pre>
 
       <div ref={printableRef}>
         <PrintableTable walkingGoals={walkingGoals} />
       </div>
 
-      <button onClick={handlePrint}>Print</button>
+      <button className="bg-blue-500 hover:bg-blue-100 text-white font-bold py-2 px-4 rounded mt-4" onClick={handlePrint}>
+        Print
+      </button>
     </div>
   );
 }
