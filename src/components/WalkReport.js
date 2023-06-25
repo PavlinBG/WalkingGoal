@@ -1,9 +1,11 @@
 import React, { useRef } from 'react';
+ import ChartComponent from './ChartComponent';
+ 
 
 function PrintableTable({ walkingGoals }) {
   return (
     <div className="overflow-x-auto">
-      <table className="w-full">
+      <table className="center">
         <thead>
           <tr>
             <th className="px-4 py-2">Monday</th>
@@ -21,7 +23,7 @@ function PrintableTable({ walkingGoals }) {
               return (
                 <tr key={index}>
                   {walkingGoals.slice(index, index + 7).map((weeklyGoal, i) => (
-                    <td key={i} className="border px-50 py-2">
+                    <td key={i} className="border px-4 py-2">
                       <div>Day {index + i + 1}:</div>
                       <fieldset>
                         <p>Walking Goal: {weeklyGoal.steps} Steps</p>
@@ -30,15 +32,20 @@ function PrintableTable({ walkingGoals }) {
                         </p>
                       </fieldset>
                     </td>
+                      
+                    
                   ))}
                 </tr>
+                
               );
+              
             } else {
               return null; // Skip rendering for other days within the week
             }
           })}
         </tbody>
       </table>
+      
     </div>
   );
 }
@@ -49,24 +56,39 @@ function WalkReport({ report, walkingGoals }) {
   const handlePrint = () => {
     if (printableRef.current) {
       const printWindow = window.open('', '_blank');
-      printWindow.document.write('<html><head><title>Print</title></head><body>');
+      printWindow.document.write('<html><head><title>Print</title>');
+      printWindow.document.write('<style>@media print { table { table-layout: auto !important; } }</style>');
+      printWindow.document.write('<link rel="stylesheet" type="text/css" href="style.css">');
+      printWindow.document.write('</head><body>');
+      printWindow.document.write('<h2 class="text-2xl font-bold mb-4">Walking Weight Loss Report</h2>');
+      //printWindow.document.write('<pre class="whitespace-pre-wrap">' + report + '</pre>');
       printWindow.document.write(printableRef.current.outerHTML);
       printWindow.document.write('</body></html>');
       printWindow.document.close();
+      
+       
+
       printWindow.print();
     }
   };
-
+ 
   return (
     <div className="report">
       <h2 className="text-2xl font-bold mb-4">Walking Weight Loss Report</h2>
       <pre className="whitespace-pre-wrap">{report}</pre>
 
+ 
+ 
       <div ref={printableRef}>
+ 
         <PrintableTable walkingGoals={walkingGoals} />
       </div>
-
-      <button className="bg-blue-500 hover:bg-blue-100 text-white font-bold py-2 px-4 rounded mt-4" onClick={handlePrint}>
+       
+        
+      <button
+        className="bg-blue-500 hover:bg-blue-100 text-white font-bold py-2 px-4 rounded mt-4"
+        onClick={handlePrint}
+      >
         Print
       </button>
     </div>

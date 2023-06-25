@@ -1,8 +1,8 @@
 /* CSS for body */
 body {
   text-align: center;
-  background-color: #676f67;
-  color: white;
+  background-color: #275d27;
+  color: rgb(0, 0, 0);
   margin: 0;
   padding: 0;
   font-family: Arial, sans-serif;
@@ -14,8 +14,7 @@ body {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  min-height: 100vh;
-  padding: 20px;
+  padding: 200px;
   font-size: calc(10px + 2vmin);
 }
 
@@ -59,30 +58,60 @@ h1 {
 
 /* CSS for table */
 table {
-  width: 20%; /* Set the table width to 100% */
+  width: 100%; /* Set the table width to 100% */
   border-collapse: collapse;
-  margin-left: auto; /* Center the table horizontally */
-  margin-right: auto; /* Center the table horizontally */
+  margin: 10 auto; /* Center the table horizontally */
 }
 
 /* CSS for th and td */
 th,
 td {
-  border: 5px solid rgb(26, 189, 50);
-  padding: 8px;
+  border: 2px solid rgb(26, 189, 50);
+  padding: 1px;
   text-align: center;
 }
 
 /* CSS for th */
 th {
   background-color: #053a07;
-  
+  border: 2px solid rgb(26, 189, 50);
+  padding: 1px;
+  color: white;
 }
 
 /* CSS for tr */
 tr {
   background-color: #093b05;
-  width: 20%;
+  color: white;
 }
 
- 
+/* Mobile-friendly styles */
+@media only screen and (max-width: 600px) {
+  /* Adjust the styles for screens with a maximum width of 600px */
+  body {
+    font-size: 14px;
+  }
+  
+  .App-logo {
+    height: 10vmin;
+  }
+  
+  table {
+    font-size: 12px;
+  }
+  
+  th,
+  td {
+    padding: 2px;
+  }
+}
+
+/* spacing */
+
+table {
+  table-layout:  hidden;
+  width: 100%;
+  border-collapse: collapse;
+  padding-left: 50;
+  border: 3px solid rgb(6, 31, 0);
+}
