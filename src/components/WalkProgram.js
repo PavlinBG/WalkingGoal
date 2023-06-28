@@ -1,84 +1,80 @@
-import React, { useRef } from 'react';
-//import ChartComponent from './ChartComponent';
+import React from 'react';
 
-function PrintableTable({ walkingGoals }) {
+
+function WalkProgram({ walkingGoals }) {
+  const generateWalkingProgram = (walkingGoals) => {
+    const program = [];
+
+    for (let i = 0; i < walkingGoals.length / 8; i++) {
+      const weeklyProgram = [];
+
+      // Monday: Recovery Walk (Walk less than Sunday)
+      weeklyProgram.push({ day: 'Monday', steps: walkingGoals[i].steps * 0.9 });
+
+      // Tuesday: Normal Walk
+      weeklyProgram.push({ day: 'Tuesday', steps: walkingGoals[i].steps });
+
+      // Wednesday: Interval Walk (gradually increasing the distance each week)
+      weeklyProgram.push({ day: 'Wednesday', steps: walkingGoals[i].steps * 0.95 });
+
+      // Thursday: Easy Walk
+      weeklyProgram.push({ day: 'Thursday', steps: walkingGoals[i].steps * 0.85 });
+
+      // Friday: Tempo Walk
+      weeklyProgram.push({ day: 'Friday', steps: walkingGoals[i].steps * 1.05 });
+
+      // Saturday: Walk (gradually increasing the distance each week)
+      weeklyProgram.push({ day: 'Saturday', steps: walkingGoals[i].steps * 0.95 });
+
+      // Sunday: Long Walk (slow and easy-paced run to promote recovery)
+      weeklyProgram.push({ day: 'Sunday', steps: walkingGoals[i].steps * 1.3 });
+
+      program.push(weeklyProgram);
+    }
+
+    return program;
+  };
+
+  const walkingProgram = generateWalkingProgram(walkingGoals);
+  
+
   return (
-    <div className="overflow-x-auto">
-      <table className="center">
+    <div className="rounded-lg overflow-hidden shadow-lg">
+      <table className="w-full">
         <thead>
-          <tr>
-            <th className="px-4 py-2">Monday</th>
-            <th className="px-4 py-2">Tuesday</th>
-            <th className="px-4 py-2">Wednesday</th>
-            <th className="px-4 py-2">Thursday</th>
-            <th className="px-4 py-2">Friday</th>
-            <th className="px-4 py-2">Saturday</th>
-            <th className="px-4 py-2">Sunday</th>
+          <tr className="bg-gray-200">
+            <th className="py-2">Monday</th>
+            <th className="py-2">Tuesday</th>
+            <th className="py-2">Wednesday</th>
+            <th className="py-2">Thursday</th>
+            <th className="py-2">Friday</th>
+            <th className="py-2">Saturday</th>
+            <th className="py-2">Sunday</th>
           </tr>
         </thead>
         <tbody>
-          {walkingGoals.map((goal, index) => {
-            if (index % 7 === 0) {
-              return (
-                <tr key={index}>
-                  {walkingGoals.slice(index, index + 7).map((weeklyGoal, i) => (
-                    <td key={i} className="border px-4 py-2">
-                      <div>Day {index + i + 1}:</div>
-                      <fieldset>
-                        <p>Walking Goal: {weeklyGoal.steps} Steps</p>
-                        <p>
-                          <input type="checkbox" id="Done" name="Done" />
-                        </p>
-                      </fieldset>
-                    </td>
-                  ))}
-                </tr>
-              );
-            } else {
-              return null; // Skip rendering for other days within the week
-            }
-          })}
+
+          {walkingProgram && walkingProgram.map((weeklyProgram, index) => (
+            <tr key={index}>
+              {weeklyProgram.map((dayGoal, i) => (
+                <td key={i} className="p-4 border">
+                  <div className="flex flex-col">
+                    <span className="mb-2">Day {index * 7 + i + 1}:</span>
+                    <p className="mb-2">Walking Goal: {dayGoal.steps} Steps</p>
+                    <label htmlFor={`day-${index}-${i}`}>
+                      <input type="checkbox" id={`day-${index}-${i}`} name={`day-${index}-${i}`} />
+                      Done
+                    </label>
+                  </div>
+                </td>
+              ))}
+            </tr>
+          ))}
         </tbody>
       </table>
+      
     </div>
   );
 }
 
-function WalkReport({ report, walkingGoals }) {
-  const printableRef = useRef(null);
-
-  const handlePrint = () => {
-    if (printableRef.current) {
-      const printWindow = window.open('', '_blank');
-      printWindow.document.write('<html><head><title>Print</title>');
-      printWindow.document.write('<style>@media print { table { table-layout: auto !important; } }</style>');
-      printWindow.document.write('<link rel="stylesheet" type="text/css" href="style.css">');
-      printWindow.document.write('</head><body>');
-      printWindow.document.write('<h2 class="text-2xl font-bold mb-4">Walking Weight Loss Report</h2>');
-      printWindow.document.write(printableRef.current.outerHTML);
-      printWindow.document.write('</body></html>');
-      printWindow.document.close();
-      printWindow.print();
-    }
-  };
-
-  return (
-    <div className="report">
-      <h2 className="text-2xl font-bold mb-4">Walking Weight Loss Report</h2>
-      <pre className="whitespace-pre-wrap">{report}</pre>
-
-      <div ref={printableRef}>
-        <PrintableTable walkingGoals={walkingGoals} />
-      </div>
-
-      <button
-        className="bg-blue-500 hover:bg-blue-100 text-white font-bold py-2 px-4 rounded mt-4"
-        onClick={handlePrint}
-      >
-        Print
-      </button>
-    </div>
-  );
-}
-
-export default WalkReport;
+export default WalkProgram;
