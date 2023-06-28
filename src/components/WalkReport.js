@@ -1,8 +1,11 @@
 import React, { useRef } from 'react';
- import ChartComponent from './ChartComponent';
- 
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
 
 function PrintableTable({ walkingGoals }) {
+  const chartLabels = walkingGoals.map((goal, index) => `Day ${index + 1}`);
+  const chartData = walkingGoals.map((goal) => goal.steps);
+
   return (
     <div className="overflow-x-auto">
       <table className="center">
@@ -32,21 +35,29 @@ function PrintableTable({ walkingGoals }) {
                         </p>
                       </fieldset>
                     </td>
-                      
-                    
                   ))}
                 </tr>
-                
               );
-              
             } else {
               return null; // Skip rendering for other days within the week
             }
           })}
         </tbody>
       </table>
-      
+
+      <div className="mx-auto w-3/5  ">
+        <canvas
+          data-te-chart="line"
+          data-te-dataset-label="Traffic"
+          data-te-labels={JSON.stringify(chartLabels)}
+          data-te-dataset-data={JSON.stringify(chartData)}
+        >
+          
+        </canvas>
+ 
+      </div>
     </div>
+    
   );
 }
 
@@ -65,26 +76,20 @@ function WalkReport({ report, walkingGoals }) {
       printWindow.document.write(printableRef.current.outerHTML);
       printWindow.document.write('</body></html>');
       printWindow.document.close();
-      
-       
 
       printWindow.print();
     }
   };
- 
+
   return (
     <div className="report">
       <h2 className="text-2xl font-bold mb-4">Walking Weight Loss Report</h2>
       <pre className="whitespace-pre-wrap">{report}</pre>
 
- 
- 
       <div ref={printableRef}>
- 
         <PrintableTable walkingGoals={walkingGoals} />
       </div>
-       
-        
+
       <button
         className="bg-blue-500 hover:bg-blue-100 text-white font-bold py-2 px-4 rounded mt-4"
         onClick={handlePrint}

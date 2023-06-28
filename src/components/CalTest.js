@@ -1,22 +1,31 @@
 import React, { useState } from 'react';
 import WalkReport from './WalkReport';
 import WalkProgram from './WalkProgram';
+ 
 
 function CalTest() {
   const [measurementSystem, setMeasurementSystem] = useState('metric');
   const [biologicalSex, setBiologicalSex] = useState('');
+ 
   const [height, setHeight] = useState(0);
   const [weight, setWeight] = useState(0);
   const [feet, setFeet] = useState(0);
+
   const [inches, setInches] = useState(0);
   const [goalWeight, setGoalWeight] = useState(0);
   const [goalDuration, setGoalDuration] = useState(0);
+
   const [walkingDuration, setWalkingDuration] = useState(0);
   const [stepsToWalk, setStepsToWalk] = useState(0);
   const [walkingGoals, setWalkingGoals] = useState([]);
   const [report, setReport] = useState('');
-  const [reset, setReset] = useState(false);
+  
+  const [setReset] = useState(false);
   const [showWalkProgram, setShowWalkProgram] = useState(false);
+
+  const handleGenerateWalkingProgram = () => {
+    setShowWalkProgram(true);
+  };
 
   const handleMeasurementSystemChange = (e) => {
     setMeasurementSystem(e.target.value);
@@ -51,7 +60,7 @@ function CalTest() {
     setGoalDuration(duration);
   };
 
-  const generateWalkingGoal = () => {
+  function CalculateSteps() {
     const weightInKg = measurementSystem === 'imperial' ? weight * 0.453592 : weight;
     const goalWeightInKg = measurementSystem === 'imperial' ? goalWeight * 0.453592 : goalWeight;
     const caloriesPerMinute = 4.9;
@@ -76,11 +85,11 @@ function CalTest() {
         steps: stepsPerDay,
       });
     }
-
     setWalkingGoals(generatedWalkingGoals);
 
-    generateReport();
-  };
+ 
+    
+  }
 
   const generateReport = () => {
     const reportText = `Walking Weight Loss Report
@@ -95,6 +104,7 @@ function CalTest() {
       Steps to Walk: ${stepsToWalk} steps`;
 
     setReport(reportText);
+    
   };
 
   const handleReset = () => {
@@ -113,60 +123,130 @@ function CalTest() {
     setReset(true); // Set the reset state to true
   };
 
-  const handleGenerateWalkingProgram = () => {
-    setShowWalkProgram(true);
-  };
-
   return (
-    <div className="container">
-      <div className="input-group">
-        <label>Measurement System:</label>
-        <select value={measurementSystem} onChange={handleMeasurementSystemChange}>
-          <option value="metric">Metric</option>
-          <option value="imperial">Imperial</option>
-        </select>
+    <div className="container mx-auto p-4">
+      <div className="border border-blue-700  bg-blue-500		 rounded p-4 mb-4">
+        <div className="mb-4">
+          <label className="block mb-2">Measurement System:</label>
+          <select
+            className="w-32 p-2 bg-blue-900 text-white rounded border border-white"
+            value={measurementSystem}
+            onChange={handleMeasurementSystemChange}
+          >
+            <option value="metric">Metric</option>
+            <option value="imperial">Imperial</option>
+          </select>
+        </div>
+        <div className="mb-4">
+          <label className="block mb-2">Biological Sex:</label>
+          <select
+            className="w-32 p-2 bg-blue-900 text-white rounded border border-white"
+            value={biologicalSex}
+            onChange={handleBiologicalSexChange}
+          >
+            <option value="">Select</option>
+            <option value="male">Male</option>
+            <option value="female">Female</option>
+          </select>
+        </div>
+        <div className="mb-4">
+          <label className="block mb-2">Height:</label>
+          {measurementSystem === 'metric' ? (
+            <>
+              <pre className="text-gray-500">cm</pre>
+              <input
+                type="number"
+                className="w-32 p-2 bg-blue-900 text-white rounded border border-white"
+                placeholder="cm"
+                value={height}
+                onChange={handleHeightChange}
+              />
+            </>
+          ) : (
+            <>
+              <pre className="text-gray-500">ft</pre>
+              <div className="flex space-x-2">
+                <input
+                  type="number"
+                  className="w-20 p-2 bg-blue-900 text-white rounded border border-white"
+                  placeholder="Feet"
+                  value={feet}
+                  onChange={handleFeetChange}
+                />
+                <input
+                  type="number"
+                  className="w-20 p-2 bg-blue-900 text-white rounded border border-white"
+                  placeholder="Inches"
+                  value={inches}
+                  onChange={handleInchesChange}
+                />
+              </div>
+            </>
+          )}
+        </div>
+        <div className="mb-4">
+          <label className="block mb-2">Weight:</label>
+          <input
+            type="number"
+            className="w-32 p-2 bg-blue-900 text-white rounded border border-white"
+            value={weight}
+            onChange={handleWeightChange}
+          />
+          <pre className="text-gray-500">{measurementSystem === 'metric' ? 'kg' : 'lbs'}</pre>
+        </div>
+        <div className="mb-4">
+          <label className="block mb-2">Goal Weight:</label>
+          <input
+            type="number"
+            className="w-32 p-2 bg-blue-900 text-white rounded border border-white"
+            value={goalWeight}
+            onChange={handleGoalWeightChange}
+          />
+          <pre className="text-gray-500">{measurementSystem === 'metric' ? 'kg' : 'lbs'}</pre>
+        </div>
+        <div className="mb-4">
+          <label className="block mb-2">Goal Duration (in months):</label>
+          <input
+            type="number"
+            className="w-32 p-2 bg-blue-900 text-white rounded border border-white"
+            value={goalDuration}
+            onChange={handleGoalDurationChange}
+          />
+          <pre className="text-gray-500">months</pre>
+        </div>
       </div>
-      <div className="input-group">
-        <label>Biological Sex:</label>
-        <select value={biologicalSex} onChange={handleBiologicalSexChange}>
-          <option value="">Select</option>
-          <option value="male">Male</option>
-          <option value="female">Female</option>
-        </select>
+
+      <div className="mb-4">
+        <button
+          onClick={()=>{
+            CalculateSteps()
+            generateReport();
+          }}
+          className="px-4 py-2 mr-2 bg-blue-500 text-white rounded hover:bg-blue-600"
+        >
+          Generate Walking Goal
+        </button>
+        <button
+  onClick={() => {
+    CalculateSteps();
+    handleGenerateWalkingProgram();
+  }}
+  className="px-4 py-2 mr-2 bg-blue-500 text-white rounded hover:bg-blue-600"
+>
+  Make Walking Program
+</button>
+        <button
+          onClick={handleReset}
+          className="px-4 py-2 bg-red-500 text-white rounded hover:bg-red-600"
+        >
+          Reset
+        </button>
       </div>
-      <div className="input-group">
-        <label>Height:</label>
-        {measurementSystem === 'metric' ? (
-          <input type="number" placeholder="cm" value={height} onChange={handleHeightChange} />
-        ) : (
-          <>
-            <input type="number" placeholder="Feet" value={feet} onChange={handleFeetChange} />
-            <input type="number" placeholder="Inches" value={inches} onChange={handleInchesChange} />
-          </>
-        )}
-        {measurementSystem === 'metric' ? <span>cm</span> : <span>ft</span>}
-      </div>
-      <div className="input-group">
-        <label>Weight:</label>
-        <input type="number" value={weight} onChange={handleWeightChange} />
-        {measurementSystem === 'metric' ? <span> kg </span> : <span>lbs</span>}
-      </div>
-      <div className="input-group">
-        <label>Goal Weight:</label>
-        <input type="number" value={goalWeight} onChange={handleGoalWeightChange} />
-        {measurementSystem === 'metric' ? <span>kg</span> : <span>lbs</span>}
-      </div>
-      <div className="input-group">
-        <label>Goal Duration (in months):</label>
-        <input type="number" value={goalDuration} onChange={handleGoalDurationChange} />
-        <span>months</span>
-      </div>
-      <div className="input-group">
-        <button onClick={generateWalkingGoal} className="generate-btn">Generate Walking Goal</button>
-        <button onClick={handleGenerateWalkingProgram} className="generate-btn">Make Walking Program</button>
-        <button onClick={handleReset} className="reset-btn">Reset</button>
-      </div>
-      {showWalkProgram && <WalkProgram walkingGoals={walkingGoals} />}
+      {showWalkProgram && (
+        <div>
+          <WalkProgram walkingGoals={walkingGoals} />
+        </div>
+      )}
       <div className="result">
         {report && <WalkReport report={report} walkingGoals={walkingGoals} />}
         <p>Walking Duration: {walkingDuration} minutes</p>
