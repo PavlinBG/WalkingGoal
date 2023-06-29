@@ -1,6 +1,6 @@
 import React from 'react';
-import BMI from './BMI';
-
+import BMI from './calculators/BMI';
+ 
 const TrainingProgramsPage = () => {
   // Sample data for training programs
   const trainingPrograms = [
@@ -71,7 +71,7 @@ const TrainingProgramsPage = () => {
         <h2 className="text-4xl font-bold mt-8">BMI Calculator</h2>
         <p className="text-gray-700">Calculate your BMI using either the metric or imperial system:</p>
       </div>
-    </div>
+     </div>
   );
 };
 
