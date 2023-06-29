@@ -3,18 +3,16 @@ import React, { useState } from 'react';
 const TDEE = () => {
   const [weight, setWeight] = useState('');
   const [height, setHeight] = useState('');
-  const [weightUnit, setWeightUnit] = useState('kg');
-  const [heightUnit, setHeightUnit] = useState('cm');
+  const [measurementSystem, setMeasurementSystem] = useState('metric');
   const [gender, setGender] = useState('male');
   const [age, setAge] = useState('');
   const [activityLevel, setActivityLevel] = useState(1.2);
   const [bmr, setBMR] = useState(0);
   const [tdee, setTDEE] = useState(0);
 
-
   const calculateTDEE = () => {
-    const weightInKg = weightUnit === 'kg' ? weight : weight / 2.205; // Convert weight to kg if in lbs
-    const heightInCm = heightUnit === 'cm' ? height : height * 2.54; // Convert height to cm if in inches
+    const weightInKg = measurementSystem === 'metric' ? weight : weight / 2.205; // Convert weight to kg if in lbs
+    const heightInCm = measurementSystem === 'metric' ? height : height * 2.54; // Convert height to cm if in inches
 
     const weightMultiplier = gender === 'male' ? 10 : 9.6;
     const heightMultiplier = gender === 'male' ? 6.25 : 4.35;
@@ -42,17 +40,15 @@ const TDEE = () => {
       <div>
         <h2 className="font-bold">Your Maintenance Calories</h2>
         <div>
-        <p>BMR: {bmr.toFixed(0)} calories per day</p>
-
-             <p>TDEE: {tdee.toFixed(0)} calories per day</p>
-
+          <p>BMR: {bmr.toFixed(0)} calories per day</p>
+          <p>TDEE: {tdee.toFixed(0)} calories per day</p>
           <p>TDEE for week: {caloriesPerWeek} calories</p>
         </div>
-        <table className="mt-4 border border-gray-300">
+        <table className="mt-4 border-collapse border border-gray-300">
           <thead>
             <tr>
-              <th className="border border-gray-300 px-4 py-2">Activity Level</th>
-              <th className="border border-gray-300 px-4 py-2">Calories per day</th>
+              <th className="border border-gray-300 px-4 py-2 bg-gray-200">Activity Level</th>
+              <th className="border border-gray-300 px-4 py-2 bg-gray-200">Calories per day</th>
             </tr>
           </thead>
           <tbody>
@@ -71,46 +67,46 @@ const TDEE = () => {
     );
   };
 
+  const handleMeasurementSystemChange = (e) => {
+    const system = e.target.value;
+    setMeasurementSystem(system);
+
+    // Clear weight and height values when changing measurement system
+    setWeight('');
+    setHeight('');
+  };
+
   return (
     <div className="container mx-auto px-4 py-8">
       <h1 className="text-3xl font-bold mb-4">TDEE Calculator</h1>
       <div className="mb-4">
-        <label className="block mb-2">Weight</label>
-        <div className="flex">
-          <input
-            type="number"
-            value={weight}
-            onChange={e => setWeight(e.target.value)}
-            className="border border-gray-300 px-2 py-1"
-          />
-          <select
-            value={weightUnit}
-            onChange={e => setWeightUnit(e.target.value)}
-            className="border border-gray-300 px-2 py-1 ml-2"
-          >
-            <option value="kg">kg</option>
-            <option value="lbs">lbs</option>
-          </select>
-        </div>
+        <label className="block mb-2">Choose the measurement system:</label>
+        <select
+          value={measurementSystem}
+          onChange={handleMeasurementSystemChange}
+          className="border border-gray-300 px-2 py-1"
+        >
+          <option value="metric">Metric</option>
+          <option value="imperial">Imperial</option>
+        </select>
       </div>
       <div className="mb-4">
-        <label className="block mb-2">Height</label>
-        <div className="flex">
-          <input
-            type="number"
-            value={height}
-            onChange={e => setHeight(e.target.value)}
-            className="border border-gray-300 px-2 py-1"
-          />
-          <select
-            value={heightUnit}
-            onChange={e => setHeightUnit(e.target.value)}
-            className="border border-gray-300 px-2 py-1 ml-2"
-          >
-            <option value="cm">cm</option>
-            <option value="inches">inches</option>
-          </select>
-        </div>
+        <label className="block mb-2">Height ({measurementSystem === 'metric' ? 'cm' : 'inches'})</label>
+        <input
+          type="number"
+          value={height}
+          onChange={e => setHeight(e.target.value)}
+          className="border border-gray-300 px-2 py-1"
+        />
+      </div>
+      <div className="mb-4">
+        <label className="block mb-2">Weight ({measurementSystem === 'metric' ? 'kg' : 'lbs'})</label>
+        <input
+          type="number"
+          value={weight}
+          onChange={e => setWeight(e.target.value)}
+          className="border border-gray-300 px-2 py-1"
+        />
       </div>
       <div className="mb-4">
         <label className="block mb-2">Age</label>
@@ -132,7 +128,7 @@ const TDEE = () => {
           <option value="female">Female</option>
         </select>
       </div>
-      
+
       <button onClick={calculateTDEE} className="bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 rounded">
         Calculate
       </button>
@@ -144,6 +140,10 @@ const TDEE = () => {
 };
 
 export default TDEE;
+
+
+
+
 
 
 
