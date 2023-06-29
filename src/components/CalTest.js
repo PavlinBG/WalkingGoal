@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import WalkReport from './WalkReport';
 import WalkProgram from './WalkProgram';
+import TrainingProgramsPage from './TrainingPrograms';
  
 
 function CalTest() {
@@ -106,6 +107,8 @@ function CalTest() {
     setReport(reportText);
     
   };
+
+ 
 
   const handleReset = () => {
     setMeasurementSystem('metric');
