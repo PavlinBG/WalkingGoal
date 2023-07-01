@@ -25,6 +25,71 @@ const TrainingProgramsPage = () => {
       duration: '45 minutes',
       progression: 'Increase distance by 0.5 miles every week and duration by 5 minutes every week.',
     },
+    {
+        title: 'Advanced Program',
+        description: 'A challenging program for experienced walkers looking to improve their endurance and speed.',
+        distance: '6 miles',
+        duration: '1.5 hours',
+        progression: 'Increase distance by 1 mile every week and duration by 15 minutes every week.',
+      },
+      {
+        title: 'Interval Training Program',
+        description: 'A program that incorporates intervals of high-intensity walking to improve cardiovascular fitness.',
+        distance: '3 miles',
+        duration: '45 minutes',
+        progression: 'Increase the duration of high-intensity intervals by 1 minute every week.',
+      },
+      {
+        title: 'Hiking Program',
+        description: 'A program designed for those who enjoy hiking and want to incorporate walking as a regular exercise.',
+        distance: 'Varies (based on hiking trail)',
+        duration: 'Varies (based on hiking trail)',
+        progression: 'Gradually increase the difficulty of hiking trails.',
+      },
+      {
+        title: 'Recovery Program',
+        description: 'A program focused on active recovery for individuals who want to maintain their fitness level without overexertion.',
+        distance: '1-2 miles',
+        duration: '20-30 minutes',
+        progression: 'Maintain the same distance and duration throughout the program.',
+      },
+      {
+        title: 'Cardiovascular Health Program',
+        description: 'A program focused on improving cardiovascular health through consistent walking.',
+        distance: '5 miles',
+        duration: '1.5 hours',
+        progression: 'Increase distance by 0.5 miles every week.',
+      },
+      {
+        title: 'Stress Relief Program',
+        description: 'A program designed to help reduce stress and promote mental well-being through regular walking.',
+        distance: '3 miles',
+        duration: '45 minutes',
+        progression: 'Increase duration by 5 minutes every week.',
+      },
+      {
+        title: 'Senior Fitness Program',
+        description: 'A program designed specifically for seniors to improve strength, balance, and overall fitness through walking.',
+        distance: '1 mile',
+        duration: '20 minutes',
+        progression: 'Gradually increase distance by 0.1 mile every week.',
+      },
+      {
+        title: 'Family Fun Program',
+        description: 'A program that encourages families to walk together for fitness and quality time.',
+        distance: '2 miles',
+        duration: '30 minutes',
+        progression: 'Increase distance or duration based on the familys comfort and availability.',
+      },
+      {
+        title: 'Event Preparation Program',
+        description: 'A program for individuals preparing for a walking event, such as a charity walk or marathon.',
+        distance: 'Varies (based on event distance)',
+        duration: 'Varies (based on event duration)',
+        progression: 'Follow a training plan specific to the event, gradually increasing distance and duration.',
+      },
+    
+      
   ];
 
   return (
@@ -49,29 +114,15 @@ const TrainingProgramsPage = () => {
           </div>
         ))}
       </div>
-      <div className="bg-white rounded-lg shadow-md p-10 padding">
-        <h2 className="text-6xl font-bold mb-4">BMI Chart</h2>
-        <p className="text-gray-700">
-          BMI charts are helpful as they give you a visual illustration of your BMI in relation to the general population
-          and show you your weight category. A BMI graph, table, or chart is also excellent to use as a BMI checker if
-          you’re trying to lose weight and want to monitor your progress.
-        </p>
-
-        <p>Here is an example of a BMI table.</p>
-
-        {/* Include the BMI calculator */}
-        <BMI />
-
-        <img
-          role="presentation"
-          className="object-cover w-full rounded dark:bg-gray-500"
-          src="https://www.ramsayhealth.co.uk/-/media/ramsay/weight-loss-surgery/bmi-chart.jpg?la=en&hash=147823603B29EB44FB7EBEE627CEF9E384993240"
-        />
-
-        <h2 className="text-4xl font-bold mt-8">BMI Calculator</h2>
-        <p className="text-gray-700">Calculate your BMI using either the metric or imperial system:</p>
-      </div>
+      
      </div>
+
+
+
+
+
+
+
   );
 };
 

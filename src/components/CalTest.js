@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import WalkReport from './WalkReport';
 import WalkProgram from './WalkProgram';
-import TrainingProgramsPage from './TrainingPrograms';
+ 
  
 
 function CalTest() {
@@ -128,6 +128,27 @@ function CalTest() {
 
   return (
     <div className="container mx-auto p-4">
+     <div className="container mx-auto p-4">
+  <div className="bg-green-200 p-6 rounded-lg">
+    <h3 className="text-4xl font-bold mb-4">Walking Calculator</h3>
+    <p className="text-lg mb-4">
+      The Walking Calculator is a practical tool designed to assist individuals in setting and achieving their walking goals. Whether you're looking to improve your fitness, manage your weight, or simply incorporate more physical activity into your daily routine, this calculator can provide you with personalized walking recommendations.
+    </p>
+
+    <p className="text-lg mb-4">
+      Once the calculator generates your walking goals, it presents them to you in an easily digestible format. These goals serve as milestones to track your progress and keep you motivated on your fitness journey. Additionally, the Walking Calculator provides a comprehensive report summarizing your walking program, including details about your goals and other relevant information.
+    </p>
+
+    <p className="text-lg mb-4">
+      Whether you're a beginner or an experienced walker, the Walking Calculator is a valuable tool to guide you towards a healthier lifestyle. By incorporating regular walking into your routine, you can enjoy numerous benefits, such as improved cardiovascular health, increased calorie burn, stress reduction, and enhanced overall well-being.
+    </p>
+
+    <p className="text-lg">
+      Ready to take the first step towards your fitness goals? Let the Walking Calculator assist you in formulating a personalized walking program that fits your needs and helps you achieve the results you desire. Start using the Walking Calculator today and embark on a rewarding journey towards a healthier, more active lifestyle.
+    </p>
+  </div>
+</div>
+
       <div className="border border-blue-700  bg-blue-500		 rounded p-4 mb-4">
         <div className="mb-4">
           <label className="block mb-2">Measurement System:</label>

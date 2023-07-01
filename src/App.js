@@ -6,6 +6,10 @@ import Navbar from './components/HavBar';
 import TrainingProgramsPage from './components/TrainingPrograms';
 import Home from './components/Home';
 import About from './components/About';
+import Tools from  './components/Tools';
+import BMI from './components/calculators/BMI';
+import TDEE from './components/calculators/TDEE';
+import CalCalorisBurn from './components/calculators/CalCalorisBurn';
 
 
 function App() {
@@ -14,15 +18,27 @@ function App() {
       <Router>
         <Navbar />
         <Routes>
-          
+          {/* Home*/}
         <Route exact path='/'  element={<Home />} />
 
-          <Route path="/CalTest" element={<CalTest />} />
+            {/*Walking Goal */}
+
+            {/* */}
+            <Route path="/TrainingPrograms" element={<TrainingProgramsPage />} />
+
+
+          <Route path="/Walking-Calculator" element={<CalTest />} />
+            {/* Tools*/}
+          <Route path="/Tools" element={<Tools />} />
+          <Route path="/BMI" element={<BMI />} />
+          <Route path="/TDEE" element={<TDEE />} />
+          <Route path="/CalorieBurn" element={<CalCalorisBurn />} />
+
+            {/*/About */}
           <Route path="/About" element={<About />} />
-          {/*<Route path="/contact" element={<Contact />} />
-          <Route path="/blogs" element={<Blogs />} />*/}
-          <Route path="/TrainingPrograms" element={<TrainingProgramsPage />} />
-        </Routes>
+
+          
+         </Routes>
       </Router>
     </div>
   );
