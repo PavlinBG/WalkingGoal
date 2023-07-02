@@ -66,6 +66,9 @@ const FastingWalkCal = () => {
     };
 
     return (
+        <div className="container mx-auto px-4 py-8">
+      <h1 className="text-3xl font-bold mb-4">Test text.</h1>
+      <div className="mb-4"> 
       <div className="bg-white rounded-lg shadow-md p-6 md:p-10">
         <div className="flex flex-col md:flex-row">
           <div className="w-full md:w-1/2 md:mr-4">
@@ -128,6 +131,8 @@ const FastingWalkCal = () => {
             {bmiResult && <p className="mt-4">{bmiResult}</p>}
           </div>
         </div>
+        </div>
+         </div>
       </div>
     );
   };

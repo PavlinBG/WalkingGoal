@@ -5,20 +5,20 @@ const Tools = () => {
   const tools = [
     {
       title: 'BMI Calculator',
-      description: 'Calculate your Body Mass Index (BMI) based on your weight and height. Visit Picher Insider for more information.',
-      link: 'https://www.picherinsider.com/bmi-calculator',
+      description: 'Calculate your Body Mass Index (BMI) based on your weight and height. Visit Pincher Insider for more information.',
+      link: '/BMI',
       thumbnail: 'https://static.vecteezy.com/system/resources/previews/010/952/601/non_2x/body-mass-index-classification-of-bmi-illustration-vector.jpg',
     },
     {
       title: 'TDEE Calculator',
-      description: 'Calculate your Total Daily Energy Expenditure (TDEE) to determine your daily calorie needs. Visit Picher Insider for more information.',
-      link: 'https://www.picherinsider.com/tdee-calculator',
+      description: 'Calculate your Total Daily Energy Expenditure (TDEE) to determine your daily calorie needs. Visit Pincher Insider for more information.',
+      link: 'TDEE',
       thumbnail: 'https://img.freepik.com/free-vector/flat-design-metabolism-illustration_23-2150093697.jpg?w=740&t=st=1688233459~exp=1688234059~hmac=537c31e93685ace0cb4dd470e0b674b2c6c0addac752a6892a081c722beafe43',
     },
     {
       title: 'Walking Calorie Burn',
-      description: 'Estimate the number of calories burned during a walking session based on distance and duration. Visit Picher Insider for more information.',
-      link: 'https://www.picherinsider.com/walking-calorie-burn',
+      description: 'Estimate the number of calories burned during a walking session based on distance and duration. Visit Pincher Insider for more information.',
+      link: '/CalorieBurn',
       thumbnail: 'https://media.istockphoto.com/id/814632144/vector/walking-man-vector-icon-people-walk-sign-illustration.jpg?s=612x612&w=0&k=20&c=gjmcfmuCTCdvC-uQD7lOEaU3WAIqefiDRdMR_NYaxs4=',
     },
   ];

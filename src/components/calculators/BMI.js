@@ -32,7 +32,7 @@ const BMI = () => {
         
        <div className="container mx-auto px-4 py-8">
         <div className="w-full md:w-1/2 md:mr-4">
-          <h4 className="text-4xl md:text-6xl font-bold mb-4">BMI Calculator</h4>
+          <h4 className="text-4xl md:text-6xl font-bold mb-4">BMI Max Index Calculator</h4>
           <p className="text-gray-700 mb-2">Choose the measurement system:</p>
           <div className="mb-4">
             <label className="block">

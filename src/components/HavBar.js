@@ -11,26 +11,24 @@ const ExampleComponent = () => {
         onMouseEnter={() => setIsDropdownOpen(true)}
         onMouseLeave={() => setIsDropdownOpen(false)}
       >
-        <Link to="/Tools" className="block px-4 py-0 text-sm">
+        <Link to="/Tools" className="block px-4 py-3 text-sm">
           Tools
         </Link>
       </button>
       {isDropdownOpen && (
         <div
-          className="absolute z-1 bg-gray-800 text-white py-1 mt-0 rounded-md shadow-lg"
+          className="absolute z-1 bg-gray-800 text-white py-1 mt-2 rounded-md shadow-lg"
           onMouseEnter={() => setIsDropdownOpen(true)}
           onMouseLeave={() => setIsDropdownOpen(false)}
         >
+         
           <Link to="BMI" className="block px-4 py-2 text-sm">
-            BMI Calculator
-          </Link>
-          <Link to="/components/calculators/BMIMassIndex.js" className="block px-4 py-2 text-sm">
             BMI Mass Index
           </Link>
-          <Link to="/components/calculators/TDEE.js" className="block px-4 py-2 text-sm">
+          <Link to="TDEE" className="block px-4 py-2 text-sm">
             TDEE
           </Link>
-          <Link to="/components/calculators/CalorieBurn.js" className="block px-4 py-2 text-sm">
+          <Link to="CalorieBurn" className="block px-4 py-2 text-sm">
             Calorie Burn
           </Link>
         </div>

@@ -10,38 +10,31 @@ import Tools from  './components/Tools';
 import BMI from './components/calculators/BMI';
 import TDEE from './components/calculators/TDEE';
 import CalCalorisBurn from './components/calculators/CalCalorisBurn';
-
+import Footer from './components/Footer';
 
 function App() {
   return (
-    <div className="bg-lime-600  background-size: 1920px 1080px;}">
+    <div className="bg-lime-600" style={{ minHeight: '100vh', display: 'flex', flexDirection: 'column' }}>
       <Router>
         <Navbar />
-        <Routes>
-          {/* Home*/}
-        <Route exact path='/'  element={<Home />} />
-
-            {/*Walking Goal */}
-
-            {/* */}
+        <div style={{ flex: '1' }}>
+          <Routes>
+            <Route exact path="/" element={<Home />} />
             <Route path="/TrainingPrograms" element={<TrainingProgramsPage />} />
-
-
-          <Route path="/Walking-Calculator" element={<CalTest />} />
-            {/* Tools*/}
-          <Route path="/Tools" element={<Tools />} />
-          <Route path="/BMI" element={<BMI />} />
-          <Route path="/TDEE" element={<TDEE />} />
-          <Route path="/CalorieBurn" element={<CalCalorisBurn />} />
-
-            {/*/About */}
-          <Route path="/About" element={<About />} />
-
-          
-         </Routes>
+            <Route path="/Walking-Calculator" element={<CalTest />} />
+            <Route path="/Tools" element={<Tools />} />
+            <Route path="/BMI" element={<BMI />} />
+            <Route path="/TDEE" element={<TDEE />} />
+            <Route path="/CalorieBurn" element={<CalCalorisBurn />} />
+            <Route path="/About" element={<About />} />
+          </Routes>
+        </div>
+        <Footer />
       </Router>
     </div>
   );
 }
+
+
 
 export default App;

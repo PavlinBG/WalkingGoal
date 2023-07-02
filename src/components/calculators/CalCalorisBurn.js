@@ -73,6 +73,9 @@ const totalWalkTime = hoursToMinutes + minsToHours || 1;
   };
 
   return (
+    <div className="container mx-auto px-4 py-8">
+      <h1 className="text-3xl font-bold mb-4">TDEE Calculator</h1>
+      <div className="mb-4"> 
     <div className="w-full md:w-1/2 mt-8 md:mt-0">
       <div className="bg-white rounded-lg shadow-md p-6 md:p-10">
         <div className="flex flex-col md:flex-row">
@@ -176,6 +179,8 @@ const totalWalkTime = hoursToMinutes + minsToHours || 1;
               <p className="mt-4">Calories Burned: {caloriesBurned} kcal</p>
             )}
           </div>
+        </div>
+        </div>
         </div>
       </div>
     </div>
