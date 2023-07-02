@@ -1,17 +1,14 @@
 import React, { useState } from 'react';
 import WalkReport from './WalkReport';
 import WalkProgram from './WalkProgram';
- 
- 
 
 function CalTest() {
   const [measurementSystem, setMeasurementSystem] = useState('metric');
   const [biologicalSex, setBiologicalSex] = useState('');
- 
+
   const [height, setHeight] = useState(0);
   const [weight, setWeight] = useState(0);
   const [feet, setFeet] = useState(0);
-
   const [inches, setInches] = useState(0);
   const [goalWeight, setGoalWeight] = useState(0);
   const [goalDuration, setGoalDuration] = useState(0);
@@ -20,7 +17,7 @@ function CalTest() {
   const [stepsToWalk, setStepsToWalk] = useState(0);
   const [walkingGoals, setWalkingGoals] = useState([]);
   const [report, setReport] = useState('');
-  
+
   const [reset, setReset] = useState(false);
   const [showWalkProgram, setShowWalkProgram] = useState(false);
 
@@ -87,9 +84,6 @@ function CalTest() {
       });
     }
     setWalkingGoals(generatedWalkingGoals);
-
- 
-    
   }
 
   const generateReport = () => {
@@ -105,10 +99,8 @@ function CalTest() {
       Steps to Walk: ${stepsToWalk} steps`;
 
     setReport(reportText);
-    
   };
 
- 
   const handleReset = () => {
     setMeasurementSystem('metric');
     setBiologicalSex('');
@@ -124,8 +116,23 @@ function CalTest() {
     setReport('');
     setReset(true); // Set the reset state to true
   };
-  
 
+  const handleSubmit = () => {
+    if (
+      biologicalSex === '' ||
+      (measurementSystem === 'metric' && height === 0) ||
+      (measurementSystem === 'imperial' && (feet === 0 || inches === 0)) ||
+      weight === 0 ||
+      goalWeight === 0 ||
+      goalDuration === 0
+    ) {
+      alert('Please fill in all the required fields.');
+      return false;
+    } else {
+      return true;
+    }
+  };
+  
   return (
     <div className="container mx-auto p-4">
     <div className="container mx-auto p-4">
@@ -241,10 +248,12 @@ function CalTest() {
 
       <div className="mb-4">
         <button
-          onClick={()=>{
-            CalculateSteps()
-            generateReport();
-          }}
+          onClick={() => {
+            if (handleSubmit()){
+              CalculateSteps();
+              generateReport();
+            }
+           }}  
           className="px-4 py-2 mr-2 bg-blue-500 text-white rounded hover:bg-blue-600"
         >
           Generate Walking Goal
@@ -252,13 +261,15 @@ function CalTest() {
         
         <button
           onClick={() => {
-            CalculateSteps();
-            handleGenerateWalkingProgram();
-                }}
+            if (handleSubmit()) {
+              CalculateSteps();
+              handleGenerateWalkingProgram();
+            }
+          }}
           className="px-4 py-2 mr-2 bg-blue-500 text-white rounded hover:bg-blue-600"
              >
               Make Walking Program
-            </button>
+          </button>
         <button
           onClick={handleReset}
           className="px-4 py-2 bg-red-500 text-white rounded hover:bg-red-600"
