@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/WalkingGoal/static/css/main.47b91cc7.css",
+    "main.js": "/WalkingGoal/static/js/main.15b9b9cd.js",
+    "static/js/787.633816a4.chunk.js": "/WalkingGoal/static/js/787.633816a4.chunk.js",
+    "index.html": "/WalkingGoal/index.html",
+    "main.47b91cc7.css.map": "/WalkingGoal/static/css/main.47b91cc7.css.map",
+    "main.15b9b9cd.js.map": "/WalkingGoal/static/js/main.15b9b9cd.js.map",
+    "787.633816a4.chunk.js.map": "/WalkingGoal/static/js/787.633816a4.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.47b91cc7.css",
+    "static/js/main.15b9b9cd.js"
+  ]
+}
