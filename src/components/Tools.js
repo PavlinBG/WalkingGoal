@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 
 const Tools = () => {
   // Sample data for tools
@@ -12,7 +12,7 @@ const Tools = () => {
     {
       title: 'TDEE Calculator',
       description: 'Calculate your Total Daily Energy Expenditure (TDEE) to determine your daily calorie needs. Visit Pincher Insider for more information.',
-      link: 'TDEE',
+      link: '/TDEE',
       thumbnail: 'https://img.freepik.com/free-vector/flat-design-metabolism-illustration_23-2150093697.jpg?w=740&t=st=1688233459~exp=1688234059~hmac=537c31e93685ace0cb4dd470e0b674b2c6c0addac752a6892a081c722beafe43',
     },
     {
@@ -28,11 +28,15 @@ const Tools = () => {
       <h1 className="text-2xl font-bold mb-4">Tools</h1>
       <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
         {tools.map((tool, index) => (
-          <div key={index} className="bg-white rounded-lg shadow p-6">
-            <h2 className="text-lg font-semibold mb-2">{tool.title}</h2>
-            <img src={tool.thumbnail} alt={tool.title} className="mb-4" />
-            <p className="text-gray-500 mb-4">{tool.description} <a href={tool.link} className="text-blue-500">Learn More</a></p>
-          </div>
+          <Link key={index} to={tool.link}>
+            <div className="bg-white rounded-lg shadow-md p-6">
+              <div className="flex flex-col">
+                <h2 className="text-xl font-bold mb-4">{tool.title}</h2>
+                <p className="text-lg mb-4">{tool.description}</p>
+              </div>
+              <img src={tool.thumbnail} alt={tool.title} className="w-full h-auto mt-4" />
+            </div>
+          </Link>
         ))}
       </div>
     </div>

@@ -98,32 +98,7 @@ const Home = () => {
         </div>
       </section>
 
-      <div className="container mx-auto py-12">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          <div className="bg-white rounded-lg shadow-md p-6">
-            <h2 className="text-2xl font-bold mb-4">Set Your Goal</h2>
-            <img src="/img/Walking_Goal_480x360.jpg" alt="img/Walking_Goal_480x360.jpg" />
-            <p className="text-gray-700">
-              Set a walking goal for yourself and track your progress. Whether it's a certain number of steps or a specific
-              distance, we'll help you stay motivated.
-            </p>
-          </div>
-          <div className="bg-white rounded-lg shadow-md p-6">
-            <h2 className="text-2xl font-bold mb-4">Calculate Your Goal</h2>
-            <p className="text-gray-700">
-              Use our calculator to determine how many steps or how much distance you need to cover to achieve your goal.
-              Stay motivated and keep walking!
-            </p>
-          </div>
-          <div className="bg-white rounded-lg shadow-md p-6">
-            <h2 className="text-2xl font-bold mb-4">Stay Motivated</h2>
-            <p className="text-gray-700">
-              Find inspiration and motivation from our community of walkers. Share your progress, read success stories, and
-              keep pushing forward!
-            </p>
-          </div>
-        </div>
-      </div>
+       
     </div>
   );
 };

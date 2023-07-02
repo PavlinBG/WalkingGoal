@@ -78,6 +78,8 @@ const TDEE = () => {
 
   return (
     <div className="container mx-auto px-4 py-8">
+               <div className="bg-green-100	 rounded-lg shadow-md p-6"> 
+
       <h1 className="text-3xl font-bold mb-4">TDEE Calculator</h1>
       <div className="mb-4">
         <label className="block mb-2">Choose the measurement system:</label>
@@ -135,6 +137,7 @@ const TDEE = () => {
       <div className="mt-4">
         {tdee > 0 && generateReport()}
       </div>
+    </div>
     </div>
   );
 };

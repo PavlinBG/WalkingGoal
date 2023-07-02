@@ -7,6 +7,8 @@ function PrintableTable({ walkingGoals }) {
   const chartData = walkingGoals.map((goal) => goal.steps);
 
   return (
+    <div className="bg-sky-400 rounded-lg shadow-md p-6"> 
+
     <div className="overflow-x-auto">
       <table className="center">
         <thead>
@@ -57,7 +59,7 @@ function PrintableTable({ walkingGoals }) {
  
       </div>
     </div>
-    
+    </div>
   );
 }
 

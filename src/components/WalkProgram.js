@@ -1,5 +1,4 @@
-import React from 'react';
-
+import React, { useRef } from 'react';
 
 function WalkProgram({ walkingGoals }) {
   const generateWalkingProgram = (walkingGoals) => {
@@ -36,43 +35,49 @@ function WalkProgram({ walkingGoals }) {
   };
 
   const walkingProgram = generateWalkingProgram(walkingGoals);
-  
 
   return (
-    <div className="rounded-lg overflow-hidden shadow-lg">
-      <table className="w-full">
-        <thead>
-          <tr className="bg-gray-200">
-            <th className="py-2">Monday</th>
-            <th className="py-2">Tuesday</th>
-            <th className="py-2">Wednesday</th>
-            <th className="py-2">Thursday</th>
-            <th className="py-2">Friday</th>
-            <th className="py-2">Saturday</th>
-            <th className="py-2">Sunday</th>
-          </tr>
-        </thead>
-        <tbody>
-
-          {walkingProgram && walkingProgram.map((weeklyProgram, index) => (
-            <tr key={index}>
-              {weeklyProgram.map((dayGoal, i) => (
-                <td key={i} className="p-4 border">
-                  <div className="flex flex-col">
-                    <span className="mb-2">Day {index * 7 + i + 1}:</span>
-                    <p className="mb-2">Walking Goal: {dayGoal.steps} Steps</p>
-                    <label htmlFor={`day-${index}-${i}`}>
-                      <input type="checkbox" id={`day-${index}-${i}`} name={`day-${index}-${i}`} />
-                      Done
-                    </label>
-                  </div>
-                </td>
-              ))}
-            </tr>
-          ))}
-        </tbody>
-      </table>
-      
+    <div className="bg-sky-400 rounded-lg shadow-md p-6">
+      <div className="rounded-lg overflow-hidden shadow-lg">
+        <div className="overflow-x-auto">
+          <table className="w-full">
+            <thead>
+              <tr className="bg-gray-200">
+                <th className="py-3 text-lg font-medium">Monday</th>
+                <th className="py-3 text-lg font-medium">Tuesday</th>
+                <th className="py-3 text-lg font-medium">Wednesday</th>
+                <th className="py-3 text-lg font-medium">Thursday</th>
+                <th className="py-3 text-lg font-medium">Friday</th>
+                <th className="py-3 text-lg font-medium">Saturday</th>
+                <th className="py-3 text-lg font-medium">Sunday</th>
+              </tr>
+            </thead>
+            <tbody>
+              {walkingProgram &&
+                walkingProgram.map((weeklyProgram, index) => (
+                  <tr key={index}>
+                    {weeklyProgram.map((dayGoal, i) => (
+                      <td key={i} className="p-4 border py-2">
+                        <div className="flex flex-col">
+                          <span className="mb-1 text-base font-bold">Day {index * 7 + i + 1}:</span>
+                          <p className="mb-1 text-base font-medium">Walking Goal: {dayGoal.steps} Steps</p>
+                          <label htmlFor={`day-${index}-${i}`}>
+                            <input
+                              type="checkbox"
+                              id={`day-${index}-${i}`}
+                              name={`day-${index}-${i}`}
+                            />
+                            Done
+                          </label>
+                        </div>
+                      </td>
+                    ))}
+                  </tr>
+                ))}
+            </tbody>
+          </table>
+        </div>
+      </div>
     </div>
   );
 }
