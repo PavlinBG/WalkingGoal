@@ -14,9 +14,9 @@ You can view a live demo of the app here:<br/>
 
 <h2>Used Technologies and Libraries:</h2>
 <ul>
-  <li>React: A JavaScript library for building user interfaces.</li>
-  <li>HTML: The standard markup language for creating web pages.</li>
-   <li>Tailwind CSS: A utility-first CSS framework that enables rapid UI development with pre-built components and styles.</li>
+  <li>React </li>
+  <li>HTML </li>
+   <li>Tailwind CSS</li>
 </ul>
 
 <p>
@@ -47,35 +47,73 @@ You can view a live demo of the app here:<br/>
 
 
 
+## Home
+  
+<p align="center">
+  <img src="/img/Home.png" alt="Home Screen">
+</p>
+ 
+<p>
+ The Home screen of the Walking Calculator welcomes users with a clean and intuitive interface. It displays a user-friendly form where individuals can input their personal details, such as their measurement system (metric or imperial), biological sex, height, weight, goal weight, and the desired duration to achieve their walking goals. Users can easily start their journey towards a healthier lifestyle by setting up their personalized walking program.
+</p>
+   
 
+ 
+
+### Set Walk Goal and Make Walking Program 
+ 
+<p align="center">
+  <img src="/img/SetWalkGoal.png" alt="Set WalkGoal">
+</p>  
+
+ 
+<p>Panel for adding the user's inputs.</p>
+
+ 
+<p align="center">
+  <img src="/img/MakeWalkingProgram.png" alt="Make Walking Program">
+</p>  
+
+<p> The "Make Walking Program" panel generates a personalized walking program based on the user's inputs, providing clear and achievable goals. With these interactive panels, users can tailor their walking routine to fit their preferences and fitness level.</p>
+
+<p align="center">
+  <img src="/img/GenerateWalkingGoal.png" alt="Set WalkGoal">
+</p>  
+
+
+ 
+<p>
+Clicking the "Set Walk Goal" panel allows users to define their walking objectives by specifying the target number of steps or the desired duration for their walking program.  
+</p>
+ 
+#### TDEE Calculator and BMI Max Index Calculator
+
+<p align="center">
+  <img src="/img/TDEECalculator.png" alt="TDEE Calculatorl">
+</p>  
+
+<p>
+  The TDEE (Total Daily Energy Expenditure) Calculator assists users in estimating the number of calories they burn in a day, considering their activity level. Understanding TDEE is crucial for weight management and maintaining a healthy lifestyle. Users can utilize this calculator to effectively align their caloric intake with their fitness goals.
+</p>
+
+<p align="center">
+  <img src="/img/BMIMaxIndexCalculator.png" alt="BMI MaxIndex Calculator">
+</p>  
+
+ 
+ <p>
+  The BMI (Body Mass Index) Max Index Calculator provides users with their BMI, which serves as an indicator of their overall body composition and health status. By knowing their BMI, users can understand their body's health and set appropriate fitness goals tailored to their unique needs.
+</p>
+
+#### Calculate Calories Burned While Walking
+ 
+<p align="center">
+  <img src="/img/CalculateCaloriesBurnedWhileWalking.png" alt="Calculate Calories Burned While Walking">
+</p> 
 
 
  
 
 
-
-## Available Scripts
-
-In the project directory, you can run:
-
-### `npm start`
-
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
-
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
-
-### `npm test`
-
-Launches the test runner in the interactive watch mode.\
  
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
   
